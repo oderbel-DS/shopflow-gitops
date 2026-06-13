@@ -11,7 +11,7 @@ spec:
     path: apps
     directory:
       recurse: false
-      exclude: root-app.yaml
+      exclude: argocd-root-app.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
