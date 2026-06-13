@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: shopflow-staging
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/oderbel-DS/shopflow-gitops.git
+    targetRevision: main
+    path: charts/shopflow
+    helm:
+      releaseName: shopflow-staging
+      valueFiles:
+        - ../../envs/staging/values-staging.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: shopflow-staging
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

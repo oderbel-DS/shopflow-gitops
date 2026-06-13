@@ -1,0 +1,43 @@
+replicaCount: 2
+
+image:
+  repository: northamerica-northeast2-docker.pkg.dev/shopflow-499020/shopflow/backend
+  tag: ""
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8000
+
+ingress:
+  enabled: true
+  className: nginx
+  host: shopflow.example.com
+
+config:
+  LOG_LEVEL: info
+
+secret:
+  DB_PASSWORD: ""
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 256Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 70
+
+serviceMonitor:
+  enabled: false
+  interval: 15s
+  path: /metrics
+  labels:
+    release: kps

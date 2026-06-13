@@ -1,0 +1,16 @@
+image:
+  repository: northamerica-northeast2-docker.pkg.dev/shopflow-499020/shopflow/backend
+  tag: "sha-120278a"
+
+replicaCount: 4
+
+ingress:
+  host: shopflow.example.com
+
+config:
+  LOG_LEVEL: warning
+
+autoscaling:
+  minReplicas: 4
+  maxReplicas: 20
+  targetCPUUtilizationPercentage: 65
