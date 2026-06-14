@@ -6,6 +6,7 @@ image:
 
 ingress:
   host: shopflow-staging.example.com
+  path: /staging
 
 config:
   LOG_LEVEL: info

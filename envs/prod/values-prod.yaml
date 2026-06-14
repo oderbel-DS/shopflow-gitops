@@ -6,6 +6,7 @@ replicaCount: 4
 
 ingress:
   host: shopflow.example.com
+  path: /prod
 
 config:
   LOG_LEVEL: warning
